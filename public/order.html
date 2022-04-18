@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="stylesheet.css">
+        <script src="src/source.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+        <img class="header" height="150" src="analogo.png"/>
+        <div class="container">
+            <section class="menu">
+                <button class="menu_knap" id="home" onclick="load_home()"><img height="50" src="home.png"/></button>
+                <p id="homelabel">Hjem</p>
+            </br>
+                <button class="menu_knap" id="order" onclick="load_order()"><img height="50" src="order.png"/></button>
+                <p id="orderlabel">Bestil</p>
+            </br>
+                <button class="menu_knap" id="profile" onclick="load_profile()"><img height="50" src="profile.png"/></button>
+                <p id="profilelabel">Profil</p>
+            </section>
+            <section class="page" id="page">
+                <h2 id="title">Menu</h2>
+                <form id="choose_shop">  
+                    <label> Vælg Kaffeshop </label>  
+                </br>
+                </br>
+                    <select>  
+                        <option value = "ITU"> IT-Universitetet  
+                        </option>  
+                        <option value = "KUA"> Københavns Universitet: Søndre Campus  
+                        </option>  
+                        <option value = "FRB"> Københavns Universitet: Frederiksberg Campus
+                        </option>  
+                        <option value = "CITY"> Københavns Universitet: City Campus 
+                        </option> 
+                        <option value = "PANUM"> Københavns Universitet: Panum
+                        </option> 
+                    </select>  
+                    </form>  
+                </br>
+                <div id="divTable" class="divTable"><!-- Div Header  -->
+                    <!-- Row 1 -->
+                    <div id="divRow1" class="divRow">
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>Americano</p>
+                            <button>Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>Stempelkaffe</p>
+                            <button>Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>Islatte</p>
+                            <button>Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>Matcha Latte</p>
+                            <button>Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    </div><!-- Row  Ends1 -->
+                    <!-- Row 2 -->
+                    <div id="divRow2" class="divRow">
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>Espresso</p>
+                            <button>Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>Latte</p>
+                            <button>Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>Latte Macchiato</p>
+                            <button>Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>Cappuccino</p>
+                            <button>Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    </div><!-- Row  Ends2 -->
+                    <!-- Row 3 -->
+                    <div id="divRow3" class="divRow">
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>Espresso</p>
+                            <button>Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>The</p>
+                            <button>Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>Iste</p>
+                            <button>Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>Varm kakao</p>
+                            <button>Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    </div><!-- Row  Ends3 -->
+                    </div><!-- Ends Main div  -->
+                    
+                    
+            </br>
+                <button id="se_ordre" onclick="load_checkout()">Se ordre</button>
+            </section>
+
+        </div>
+    </body>
+</html>

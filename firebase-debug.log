@@ -1,0 +1,25 @@
+[debug] [2022-04-18T15:39:07.397Z] ----------------------------------------------------------------------
+[debug] [2022-04-18T15:39:07.398Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init
+[debug] [2022-04-18T15:39:07.398Z] CLI Version:   10.6.0
+[debug] [2022-04-18T15:39:07.398Z] Platform:      darwin
+[debug] [2022-04-18T15:39:07.398Z] Node Version:  v16.14.2
+[debug] [2022-04-18T15:39:07.399Z] Time:          Mon Apr 18 2022 17:39:07 GMT+0200 (Centraleuropæisk sommertid)
+[debug] [2022-04-18T15:39:07.399Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-04-18T15:39:07.415Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-04-18T15:39:07.415Z] > authorizing via signed-in user (rebekkameriksen@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Volumes/GoogleDrive/Mit drev/IT-Universitetet/UX og Webprogrammering/Afleveringer/Obligatorisk Opgave #3/analog
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+

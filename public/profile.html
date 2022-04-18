@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="stylesheet.css">
+        <script src="src/source.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+        <img class="header" height="150" src="analogo.png"/>
+        <div class="container">
+            <section class="menu">
+                <button class="menu_knap" id="home" onclick="load_home()"><img height="50" src="home.png"/></button>
+                <p id="homelabel">Hjem</p>
+            </br>
+                <button class="menu_knap" id="order" onclick="load_order()"><img height="50" src="order.png"/></button>
+                <p id="orderlabel">Bestil</p>
+            </br>
+                <button class="menu_knap" id="profile" onclick="load_profile()"><img height="50" src="profile.png"/></button>
+                <p id="profilelabel">Profil</p>
+            </section>
+            <section class="page">
+                <h2 id="title">Profil</h2>
+                <img src="profile.png"id="user-pic"/>
+                <h3 id="username">Brugernavn</h3>
+                <h3 id="credits">Kaffe credits: 300,-</h3>
+                <button id="my_orders">Mine ordrer</button>
+                <button id="settings">Indstillinger</button>
+                <button id="log_out">Log ud</button>
+            </section>
+        </div>
+    </body>
+</html>

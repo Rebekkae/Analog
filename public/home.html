@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="stylesheet.css">
+        <script src="src/source.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+        <img class="header" height="150" src="analogo.png"/>
+        <div class="container">
+            <section class="menu">
+                <button class="menu_knap" id="home" onclick="load_home()"><img height="50" src="home.png"/></button>
+                <p id="homelabel">Hjem</p>
+            </br>
+                <button class="menu_knap" id="order" onclick="load_order()"><img height="50" src="order.png"/></button>
+                <p id="orderlabel">Bestil</p>
+            </br>
+                <button class="menu_knap" id="profile" onclick="load_profile()"><img height="50" src="profile.png"/></button>
+                <p id="profilelabel">Profil</p>
+            </section>
+            <section class="page">
+                <h2 id="title">Dagens Deal</h2>
+                <img src="kaffe.png" id="deal_pic"/>
+                <h3 id="deal">20% rabat på latte!</h3>
+                <h3 id="catalog">Forårsfavoritter</h3>
+                <button id="prev" onclick="back()">&#8678;</button>
+                <img id="catalog_pic" src="matcha.png"/>
+                <button id="next" onclick="next()">&#8680;</button>
+            </section>
+        </div>
+    </body>
+</html>
