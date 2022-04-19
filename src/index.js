@@ -42,7 +42,10 @@ function load_home() {
 function make_order() {
   alert("Tak for din bestilling!");
   window.location.href = "home.html";
+  credits = credits - 45;
 }
+
+var credits = 300;
 
 async function signIn() {
     // Sign in Firebase using popup auth and Google as the identity provider.
@@ -63,7 +66,7 @@ async function signIn() {
   }
   
   function getProfilePicUrl() {
-    return getAuth().currentUser.photoURL || 'profile.png';
+    return getAuth().currentUser.photoURL;
   }
   
   function getUserName() {
@@ -73,6 +76,29 @@ async function signIn() {
   function isUserSignedIn() {
     return !!getAuth().currentUser;
   }
+
+  function authStateObserver(user) {
+    if (user) {
+      // User is signed in!
+      // Get the signed-in user's profile pic and name.
+      var profilePicUrl = getProfilePicUrl();
+      var userName = getUserName();
+  
+      // Set the user's profile pic and name.
+      var userpic = document.getElementById('user-pic');
+      var username = document.getElementById('username');
+      var balance = document.getElementById('credits');
+      if(userpic != null) {
+        userpic.src = profilePicUrl;
+      }
+      if(username != null) {
+        username.innerHTML = userName;
+      }
+      if(balance != null) {
+        balance.innerHTML = "Kaffe credits: " + credits + ",-";
+      }
+  }
+}
 
   //Change page on home.
 
@@ -107,4 +133,48 @@ function next() {
 }
 
 var loginButton = document.getElementById('google_login');
-loginButton.addEventListener('click', signIn);
+if(loginButton != null) {
+  loginButton.addEventListener('click', signIn);
+}
+
+var profileButton = document.getElementById('profile');
+if(profileButton != null) {
+  profileButton.addEventListener('click', load_profile);
+}
+
+var homeButton = document.getElementById('home');
+if(homeButton != null) {
+  homeButton.addEventListener('click', load_home);
+}
+
+var orderButton = document.getElementById('order');
+if(orderButton != null) {
+  orderButton.addEventListener('click', load_order);
+}
+
+var logoutButton = document.getElementById('log_out');
+if(logoutButton != null) {
+  logoutButton.addEventListener('click', signOutUser);
+}
+
+var nextButton = document.getElementById('next');
+if(nextButton != null) {
+  nextButton.addEventListener('click', next);
+}
+
+var prevButton = document.getElementById('prev');
+if(prevButton != null) {
+  prevButton.addEventListener('click', prev);
+}
+
+var checkoutButton = document.getElementById('se_ordre');
+if(checkoutButton != null) {
+  checkoutButton.addEventListener('click', load_checkout);
+}
+
+var makeOrderButton = document.getElementById('place_order');
+if(makeOrderButton != null) {
+  makeOrderButton.addEventListener('click', make_order);
+}
+
+initFirebaseAuth();
