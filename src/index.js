@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import { extractQuerystring } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -9,6 +10,19 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  limit,
+  onSnapshot,
+  setDoc,
+  updateDoc,
+  doc,
+  serverTimestamp,
+} from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -39,13 +53,10 @@ function load_home() {
   window.location.href = "checkout.html";
 } 
 
-function make_order() {
+async function make_order() {
   alert("Tak for din bestilling!");
   window.location.href = "home.html";
-  credits = credits - 45;
 }
-
-var credits = 300;
 
 async function signIn() {
     // Sign in Firebase using popup auth and Google as the identity provider.
@@ -81,6 +92,7 @@ async function signIn() {
     if (user) {
       // User is signed in!
       // Get the signed-in user's profile pic and name.
+      saveUserData(user);
       var profilePicUrl = getProfilePicUrl();
       var userName = getUserName();
   
@@ -97,6 +109,20 @@ async function signIn() {
       if(balance != null) {
         balance.innerHTML = "Kaffe credits: " + credits + ",-";
       }
+    }
+}
+
+async function saveUserData(user) {
+  // Add a new message entry to the Firebase database.
+  try {
+    await addDoc(collection(getFirestore(), user.uid), {
+      name: getUserName(),
+      profilePicUrl: getProfilePicUrl(),
+      credit: 0
+    });
+  }
+  catch(error) {
+    console.error('Error writing new message to Firebase Database', error);
   }
 }
 
