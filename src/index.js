@@ -68,7 +68,7 @@ async function signIn() {
   function signOutUser() {
     // Sign out of Firebase.
     signOut(getAuth());
-    window.location.href = "login.html";
+    window.location.href = "index.html";
   }
   
   function initFirebaseAuth() {
