@@ -95,6 +95,9 @@ async function signIn() {
       saveUserData(user);
       var profilePicUrl = getProfilePicUrl();
       var userName = getUserName();
+      // if (location.pathname!="index.html") {
+      //     location.href="index.html";
+      // }
   
       // Set the user's profile pic and name.
       var userpic = document.getElementById('user-pic');
