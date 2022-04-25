@@ -1,5 +1,4 @@
 // Import the functions you need from the SDKs you need
-import { extractQuerystring } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -9,19 +8,13 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
+  UserProfile,
+  updateProfile
 } from 'firebase/auth';
 import {
   getFirestore,
   collection,
   addDoc,
-  query,
-  orderBy,
-  limit,
-  onSnapshot,
-  setDoc,
-  updateDoc,
-  doc,
-  serverTimestamp,
 } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
@@ -50,12 +43,137 @@ function load_home() {
  } 
 
  function load_checkout() {
-  window.location.href = "checkout.html";
+  var currentOrderText = localStorage.getItem('htmlText');
+  if(currentOrderText == "") {
+    alert("Du har ikke valgt noget endnu!");
+  }
+  else {
+    window.location.href = "checkout.html";
+  }
 } 
 
-async function make_order() {
-  alert("Tak for din bestilling!");
-  window.location.href = "home.html";
+function make_order() {
+  var credits = parseInt(localStorage.getItem("creditKey"));
+  var amount = parseInt(localStorage.getItem('total'));
+  if(credits < total) {
+    alert("Du har ikke nok kaffecredits!");
+  }
+  else {
+    alert("Tak for din bestilling!");
+    window.location.href = "home.html";
+    credits = credits - amount;
+    localStorage.setItem("creditKey", credits);
+    localStorage.setItem('total', 0);
+    localStorage.setItem('htmlText', "");
+    localStorage.setItem('orderCount', 0);
+  }
+}
+
+function addCredits() {
+  var credits = parseInt(localStorage.getItem("creditKey"));
+  var amount = parseInt(prompt("Hvor mange credits vil du sætte ind?"));
+  if(amount < 0) {
+    alert("Ugyldigt input!");
+  }
+  else {
+    credits += amount;
+    localStorage.setItem("creditKey", credits);
+    location.reload();
+  }
+}
+
+function addToOrder() {
+  var count = localStorage.getItem('orderCount');
+  if(count != 4) {
+    count++;
+    localStorage.setItem('orderCount', count);
+    var currentOrderText = localStorage.getItem('htmlText');
+    if(currentOrderText == null) {
+      currentOrderText = "";
+    }
+    var currentOrderPrice = parseInt(localStorage.getItem('total'));
+    if(isNaN(currentOrderPrice)) {
+      currentOrderPrice = 0;
+    }
+    if(this.id == 'americano') {
+      currentOrderText += 
+      "<div id=\"order_coffee" + count + "\" \n" +
+        "<td>\n" +
+            "<img src=\"order.png\" height=\"70\"/>\n" +
+            "</br>\n" + 
+            "<p>1x Americano</p>\n" + 
+            "<p>15,-</p>\n" +
+        "</td>\n" +
+      "</div>\n"
+      currentOrderPrice += 15;
+    } 
+    if(this.id == 'latte') {
+      currentOrderText += 
+      "<div id=\"order_coffee" + count + "\" \n" +
+        "<td>\n" +
+            "<img src=\"order.png\" height=\"70\"/>\n" +
+            "</br>\n" + 
+            "<p>1x Latte</p>\n" + 
+            "<p>20,-</p>\n" +
+        "</td>\n" +
+      "</div>\n"
+      currentOrderPrice += 20;
+    }
+    if(this.id == 'islatte') {
+      currentOrderText += 
+      "<div id=\"order_coffee" + count + "\" \n" +
+        "<td>\n" +
+            "<img src=\"order.png\" height=\"70\"/>\n" +
+            "</br>\n" + 
+            "<p>1x Islatte</p>\n" + 
+            "<p>25,-</p>\n" +
+        "</td>\n" +
+      "</div>\n"
+      currentOrderPrice += 25;
+    }
+    if(this.id == 'varm_kakao') {
+      currentOrderText += 
+      "<div id=\"order_coffee" + count + "\" \n" +
+        "<td>\n" +
+            "<img src=\"order.png\" height=\"70\"/>\n" +
+            "</br>\n" + 
+            "<p>1x Varm Kakao</p>\n" + 
+            "<p>15,-</p>\n" +
+        "</td>\n" +
+      "</div>\n"
+      currentOrderPrice += 15;
+    }
+    if(this.id == 'the') {
+      currentOrderText += 
+      "<div id=\"order_coffee" + count + "\" \n" +
+        "<td>\n" +
+            "<img src=\"order.png\" height=\"70\"/>\n" +
+            "</br>\n" + 
+            "<p>1x The</p>\n" + 
+            "<p>10,-</p>\n" +
+        "</td>\n" +
+      "</div>\n"
+      currentOrderPrice += 10;
+    }
+    if(this.id == 'cap') {
+      currentOrderText += 
+      "<div id=\"order_coffee" + count + "\" \n" +
+        "<td>\n" +
+            "<img src=\"order.png\" height=\"70\"/>\n" +
+            "</br>\n" + 
+            "<p>1x Cappuccino</p>\n" + 
+            "<p>20,-</p>\n" +
+        "</td>\n" +
+      "</div>\n"
+      currentOrderPrice += 20;
+    }
+    localStorage.setItem('htmlText', currentOrderText);
+    localStorage.setItem('total', currentOrderPrice);
+  }
+  else {
+    alert("Du kan maks tilføje 4 ting til kurven");
+  }
+  
 }
 
 async function signIn() {
@@ -63,12 +181,20 @@ async function signIn() {
     var provider = new GoogleAuthProvider();
     await signInWithPopup(getAuth(), provider);
     window.location.href = "home.html";
+    localStorage.setItem("creditKey", 100);
+    localStorage.setItem('orderCount', 0);
+    localStorage.setItem('total', 0);
+    localStorage.setItem('htmlText', "");
   }
   
   function signOutUser() {
     // Sign out of Firebase.
     signOut(getAuth());
     window.location.href = "index.html";
+    localStorage.setItem("creditKey", 0);
+    localStorage.setItem('orderCount', 0);
+    localStorage.setItem('total', 0);
+    localStorage.setItem('htmlText', "");
   }
   
   function initFirebaseAuth() {
@@ -90,16 +216,15 @@ async function signIn() {
 
   function authStateObserver(user) {
     if (user) {
+      var credits = parseInt(localStorage.getItem("creditKey"));
       // User is signed in!
       // Get the signed-in user's profile pic and name.
-      saveUserData(user);
       var profilePicUrl = getProfilePicUrl();
       var userName = getUserName();
-  
+      var balance = document.getElementById('credits');
       // Set the user's profile pic and name.
       var userpic = document.getElementById('user-pic');
       var username = document.getElementById('username');
-      var balance = document.getElementById('credits');
       if(userpic != null) {
         userpic.src = profilePicUrl;
       }
@@ -107,23 +232,22 @@ async function signIn() {
         username.innerHTML = userName;
       }
       if(balance != null) {
-        balance.innerHTML = "Kaffe credits: " + credits + ",-";
+        if(isNaN(credits)) {
+          balance.innerHTML = "Kaffe credits: " + 0 + ",-";
+          credits = 0;
+          localStorage.setItem("creditKey", credits);
+        }
+        else {
+          balance.innerHTML = "Kaffe credits: " + credits + ",-";
+        }
       }
     }
-}
-
-async function saveUserData(user) {
-  // Add a new message entry to the Firebase database.
-  try {
-    await addDoc(collection(getFirestore(), user.uid), {
-      name: getUserName(),
-      profilePicUrl: getProfilePicUrl(),
-      credit: 0
-    });
-  }
-  catch(error) {
-    console.error('Error writing new message to Firebase Database', error);
-  }
+    else {
+      //Make sure that user is logged in, or else redirect to login page.
+        if (location.pathname!="/index.html") {
+        location.href="index.html";
+      }
+    }
 }
 
   //Change page on home.
@@ -178,6 +302,11 @@ if(orderButton != null) {
   orderButton.addEventListener('click', load_order);
 }
 
+var backToMenuButton = document.getElementById('back_to_menu');
+if(backToMenuButton != null) {
+  backToMenuButton.addEventListener('click', load_order);
+}
+
 var logoutButton = document.getElementById('log_out');
 if(logoutButton != null) {
   logoutButton.addEventListener('click', signOutUser);
@@ -190,7 +319,7 @@ if(nextButton != null) {
 
 var prevButton = document.getElementById('prev');
 if(prevButton != null) {
-  prevButton.addEventListener('click', prev);
+  prevButton.addEventListener('click', back);
 }
 
 var checkoutButton = document.getElementById('se_ordre');
@@ -202,5 +331,15 @@ var makeOrderButton = document.getElementById('place_order');
 if(makeOrderButton != null) {
   makeOrderButton.addEventListener('click', make_order);
 }
+
+var settingsButton = document.getElementById('settings');
+if(settingsButton != null) {
+  settingsButton.addEventListener('click', addCredits);
+}
+
+const divs = document.querySelectorAll('.add_to_order');
+if(divs != null) {
+  divs.forEach(el => el.addEventListener('click', addToOrder));
+};
 
 initFirebaseAuth();
