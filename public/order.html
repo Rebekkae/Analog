@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" href="stylesheet.css">
         <script defer src="/dist/bundle.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
     </head>
@@ -47,42 +48,8 @@
                             <img src="order.png" height="70"/>
                             </br>
                             <p>Americano</p>
-                            <button>Tilføj til bestilling</button>
-                        </td>
-                    </div>
-                    <div class="divCell" >
-                        <td>
-                            <img src="order.png" height="70"/>
-                            </br>
-                            <p>Stempelkaffe</p>
-                            <button>Tilføj til bestilling</button>
-                        </td>
-                    </div>
-                    <div class="divCell" >
-                        <td>
-                            <img src="order.png" height="70"/>
-                            </br>
-                            <p>Islatte</p>
-                            <button>Tilføj til bestilling</button>
-                        </td>
-                    </div>
-                    <div class="divCell" >
-                        <td>
-                            <img src="order.png" height="70"/>
-                            </br>
-                            <p>Matcha Latte</p>
-                            <button>Tilføj til bestilling</button>
-                        </td>
-                    </div>
-                    </div><!-- Row  Ends1 -->
-                    <!-- Row 2 -->
-                    <div id="divRow2" class="divRow">
-                    <div class="divCell" >
-                        <td>
-                            <img src="order.png" height="70"/>
-                            </br>
-                            <p>Espresso</p>
-                            <button>Tilføj til bestilling</button>
+                            <p>15,-</p>
+                            <button id="americano" class="add_to_order">Tilføj til bestilling</button>
                         </td>
                     </div>
                     <div class="divCell" >
@@ -90,15 +57,37 @@
                             <img src="order.png" height="70"/>
                             </br>
                             <p>Latte</p>
-                            <button>Tilføj til bestilling</button>
+                            <p>20,-</p>
+                            <button id="latte" class="add_to_order">Tilføj til bestilling</button>
                         </td>
                     </div>
                     <div class="divCell" >
                         <td>
                             <img src="order.png" height="70"/>
                             </br>
-                            <p>Latte Macchiato</p>
-                            <button>Tilføj til bestilling</button>
+                            <p>Islatte</p>
+                            <p>25,-</p>
+                            <button id="islatte" class="add_to_order">Tilføj til bestilling</button>
+                        </td>
+                    </div>
+                    </div><!-- Row  Ends1 -->
+                    <!-- Row 2 -->
+                    <div id="divRow2" class="divRow">
+                        <div class="divCell" >
+                            <td>
+                                <img src="order.png" height="70"/>
+                                <p>Varm kakao</p>
+                                <p>15,-</p>
+                                <button id="varm_kakao" class="add_to_order">Tilføj til bestilling</button>
+                            </td>
+                        </div>
+                    <div class="divCell" >
+                        <td>
+                            <img src="order.png" height="70"/>
+                            </br>
+                            <p>The</p>
+                            <p>10,-</p>
+                            <button id="the" class="add_to_order">Tilføj til bestilling</button>
                         </td>
                     </div>
                     <div class="divCell" >
@@ -106,48 +95,12 @@
                             <img src="order.png" height="70"/>
                             </br>
                             <p>Cappuccino</p>
-                            <button>Tilføj til bestilling</button>
+                            <p>20,-</p>
+                            <button id="cap" class="add_to_order">Tilføj til bestilling</button>
                         </td>
                     </div>
-                    </div><!-- Row  Ends2 -->
-                    <!-- Row 3 -->
-                    <div id="divRow3" class="divRow">
-                    <div class="divCell" >
-                        <td>
-                            <img src="order.png" height="70"/>
-                            </br>
-                            <p>Espresso</p>
-                            <button>Tilføj til bestilling</button>
-                        </td>
                     </div>
-                    <div class="divCell" >
-                        <td>
-                            <img src="order.png" height="70"/>
-                            </br>
-                            <p>The</p>
-                            <button>Tilføj til bestilling</button>
-                        </td>
-                    </div>
-                    <div class="divCell" >
-                        <td>
-                            <img src="order.png" height="70"/>
-                            </br>
-                            <p>Iste</p>
-                            <button>Tilføj til bestilling</button>
-                        </td>
-                    </div>
-                    <div class="divCell" >
-                        <td>
-                            <img src="order.png" height="70"/>
-                            </br>
-                            <p>Varm kakao</p>
-                            <button>Tilføj til bestilling</button>
-                        </td>
-                    </div>
-                    </div><!-- Row  Ends3 -->
-                    </div><!-- Ends Main div  -->
-                    
-                    
+                    </div> <!--- Ends Main div --->
             </br>
                 <button id="se_ordre">Se ordre</button>
             </section>

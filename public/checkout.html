@@ -19,30 +19,20 @@
                 <button class="menu_knap" id="profile"><img height="50" src="profile.png"/></button>
                 <p id="profilelabel">Profil</p>
             </section>
-            <section class="page">
+            <section id='page' class="page">
                 <h2 id="title">Din ordre</h2>
-                <button id="back_to_menu" onclick="load_order()">Tilbage til menu</button>
-                <!-- <img src="order.png" id="order_coffee"/>
-                <label for="order_coffee">1x Islatte</label> -->
-                <div id="order_coffee" >
-                    <td>
-                        <img src="order.png" height="70"/>
-                        </br>
-                        <p>1x Cappuccino</p>
-                        <p>20,-</p>
-                    </td>
-                </div>
-                <div id="order_coffee2" >
-                    <td>
-                        <img src="order.png" height="70"/>
-                        </br>
-                        <p>1x Islatte</p>
-                        <p>25,-</p>
-                    </td>
-                </div>
-                <h3 id="order_amount">Total: 45,-</h3>
+                <button id="back_to_menu">Tilbage til menu</button>
+            </br>
+                <h3 id="order_amount">Total: 0,-</h3>
                 <button id="place_order">Bestil</button>
             </section>
+            <script>
+                var page = document.getElementById('page');
+                var text = localStorage.getItem('htmlText');
+                page.innerHTML += text;
+                var total = localStorage.getItem('total');
+                document.getElementById('order_amount').innerText = "Total: " + total + ",-";
+            </script>
         </div>
     </body>
 </html>
