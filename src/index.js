@@ -169,6 +169,7 @@ function addToOrder() {
     }
     localStorage.setItem('htmlText', currentOrderText);
     localStorage.setItem('total', currentOrderPrice);
+    alert("Tilføjet til bestilling");
   }
   else {
     alert("Du kan maks tilføje 4 ting til kurven");
